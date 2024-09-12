@@ -96,7 +96,7 @@ int main(void)
   MX_TIM6_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start(&htim6);
+  HAL_TIM_Base_Start_IT(&htim6);
 
   buffer_len = sprintf(buffer, "Measuring time test\r\n");
   HAL_UART_Transmit(&huart2, (uint8_t *) buffer, buffer_len, 100);
@@ -172,9 +172,9 @@ static void MX_TIM6_Init(void)
 
   /* USER CODE END TIM6_Init 1 */
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 0;
+  htim6.Init.Prescaler = 16-1;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 65535;
+  htim6.Init.Period = 65535-1;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
   {
